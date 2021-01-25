@@ -3,15 +3,18 @@ package net.snapdrop;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,6 +25,7 @@ public class MainActivity extends Activity {
 
     private WebView browser;
     private ValueCallback<Uri[]> filePath;
+    Uri[] results = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +35,52 @@ public class MainActivity extends Activity {
         browser.setWebChromeClient(getMyWebChromeClient());
         browser.setWebViewClient(getMyWebViewClient());
         browserSettings();
+        handleIntent(getIntent());
 
         browser.loadUrl("https://snapdrop.net/");
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        handleIntent(intent);
+        super.onNewIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        Log.d("INTENT", intent.toString());
+        String action = intent.getAction();
+        String type = intent.getType();
+        if (type == null) return;
+
+        if (Intent.ACTION_SEND.equals(action) || Intent.ACTION_SEND_MULTIPLE.equals(action)) {
+            if ("text/plain".equals(type)) {
+                copyToClipboard(intent.getStringExtra(Intent.EXTRA_TEXT));
+                Toast.makeText(this, "Long press and paste the text", Toast.LENGTH_LONG).show();
+            } else {
+                getUriFromIntent(intent);
+            }
+        }
+    }
+
+    private void copyToClipboard(String sharedText) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText(getString(R.string.app_name), sharedText);
+        clipboard.setPrimaryClip(clip);
+    }
+
+    private void getUriFromIntent(Intent intent) {
+        Log.d("INTENT", "getUriFrom Intent");
+        String dataString = intent.getDataString();
+        ClipData clipData = intent.getClipData();
+        if (clipData != null) {
+            results = new Uri[clipData.getItemCount()];
+            for (int i = 0; i < clipData.getItemCount(); i++) {
+                ClipData.Item item = clipData.getItemAt(i);
+                results[i] = item.getUri();
+            }
+        }
+        if (dataString != null)
+            results = new Uri[]{Uri.parse(dataString)};
     }
 
     private void openWebUrl(String url) {
@@ -92,7 +140,13 @@ public class MainActivity extends Activity {
             @Override
             public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
                 filePath = filePathCallback;
-                openFileChooserActivity();
+                if (results != null) {
+                    filePath.onReceiveValue(results);
+                    filePath = null;
+                    results = null;
+                } else
+                    openFileChooserActivity();
+
                 return true;
             }
         };
@@ -103,23 +157,12 @@ public class MainActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, intent);
         if (requestCode != FILE_CHOOSER_RESULT_CODE || filePath == null)
             return;
-        Uri[] results = null;
+
         if (resultCode == Activity.RESULT_OK) {
-            if (intent != null) {
-                String dataString = intent.getDataString();
-                ClipData clipData = intent.getClipData();
-                if (clipData != null) {
-                    results = new Uri[clipData.getItemCount()];
-                    for (int i = 0; i < clipData.getItemCount(); i++) {
-                        ClipData.Item item = clipData.getItemAt(i);
-                        results[i] = item.getUri();
-                    }
-                }
-                if (dataString != null)
-                    results = new Uri[]{Uri.parse(dataString)};
-            }
+            if (intent != null) getUriFromIntent(intent);
         }
         filePath.onReceiveValue(results);
         filePath = null;
+        results = null;
     }
 }
