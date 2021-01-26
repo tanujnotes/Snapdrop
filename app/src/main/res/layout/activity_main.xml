@@ -11,6 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <ImageView
+        android:id="@+id/refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:padding="16dp"
+        android:src="@drawable/ic_refresh"
+        android:tint="@color/gray" />
+
     <View
         android:id="@+id/about"
         android:layout_width="64dp"
@@ -27,7 +36,7 @@
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/close"

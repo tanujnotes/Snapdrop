@@ -51,6 +51,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         aboutLayout = findViewById(R.id.about_layout);
         findViewById(R.id.about).setOnClickListener(this);
         findViewById(R.id.close).setOnClickListener(this);
+        findViewById(R.id.refresh).setOnClickListener(this);
         findViewById(R.id.robin_github).setOnClickListener(this);
         findViewById(R.id.robin_twitter).setOnClickListener(this);
         findViewById(R.id.tanuj_github).setOnClickListener(this);
@@ -68,6 +69,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @SuppressLint("NonConstantResourceId")
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.refresh:
+                browser.loadUrl(SNAPDROP_URL);
+                break;
             case R.id.about:
                 aboutLayout.setVisibility(View.VISIBLE);
                 break;
