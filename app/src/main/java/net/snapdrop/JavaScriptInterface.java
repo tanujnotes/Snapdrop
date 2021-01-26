@@ -1,7 +1,12 @@
 package net.snapdrop;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
@@ -9,6 +14,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -49,16 +55,32 @@ public class JavaScriptInterface {
     }
 
     private void convertBase64StringToPdfAndStoreIt(String base64PDf, String mimeType, String extension) throws IOException {
-        FileOutputStream os;
-
         String currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
-        final File dwldsPath = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOWNLOADS) + "/Snapdrop_" + currentDateTime + "_." + extension);
-        byte[] pdfAsBytes = Base64.decode(base64PDf.replaceFirst("^data:" + mimeType + ";base64,", ""), 0);
+        String fileName = "Snapdrop_" + currentDateTime + "_." + extension;
 
-        os = new FileOutputStream(dwldsPath, false);
-        os.write(pdfAsBytes);
-        os.flush();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ContentResolver resolver = context.getContentResolver();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(MediaStore.Downloads.DISPLAY_NAME, fileName);
+            contentValues.put(MediaStore.Downloads.MIME_TYPE, mimeType);
+            contentValues.put(MediaStore.Downloads.DATE_ADDED, System.currentTimeMillis());
+            contentValues.put(MediaStore.Downloads.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS + "/Snapdrop");
+
+            Uri uri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues);
+            byte[] fileAsBytes = Base64.decode(base64PDf.replaceFirst("^data:" + mimeType + ";base64,", ""), 0);
+            OutputStream outputStream = resolver.openOutputStream(uri);
+            outputStream.write(fileAsBytes);
+            outputStream.close();
+
+        } else {
+            final File file = new File(Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_DOWNLOADS) + "/Snapdrop/" + fileName);
+
+            byte[] fileAsBytes = Base64.decode(base64PDf.replaceFirst("^data:" + mimeType + ";base64,", ""), 0);
+            FileOutputStream fileOutputStream = new FileOutputStream(file, false);
+            fileOutputStream.write(fileAsBytes);
+            fileOutputStream.flush();
+        }
         Toast.makeText(context, "FILE DOWNLOADED!", Toast.LENGTH_SHORT).show();
     }
 }
