@@ -40,6 +40,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().setStatusBarColor(getColor(android.R.color.black));
+            getWindow().setNavigationBarColor(getColor(android.R.color.black));
+        }
+
         browser = findViewById(R.id.webView);
         browser.setWebChromeClient(getMyWebChromeClient());
         browser.setWebViewClient(getMyWebViewClient());
