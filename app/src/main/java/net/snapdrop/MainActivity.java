@@ -99,7 +99,7 @@ public class MainActivity extends Activity {
         browser.getSettings().setJavaScriptEnabled(true);
         browser.setDownloadListener((url, userAgent, contentDisposition, mimeType, contentLength) -> {
             if (hasStoragePermission()
-//                    || Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+                    || Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
                     || Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
                 saveFile(url, mimeType);
             } else {
