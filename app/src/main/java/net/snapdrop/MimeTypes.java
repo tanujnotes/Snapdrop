@@ -30,6 +30,7 @@ public class MimeTypes {
     public static final String MIME_APPLICATION_RDF_SMIL = "application/smil";
     public static final String MIME_APPLICATION_SRGS = "application/srgs";
     public static final String MIME_APPLICATION_SRGS_XML = "application/srgs+xml";
+    public static final String MIME_APPLICATION_VND_APK = "application/vnd.android.package-archive";
     public static final String MIME_APPLICATION_VND_MIF = "application/vnd.mif";
     public static final String MIME_APPLICATION_VND_MSEXCEL = "application/vnd.ms-excel";
     public static final String MIME_APPLICATION_VND_MSEXCEL_2007 = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -122,8 +123,8 @@ public class MimeTypes {
     public static final String MIME_VIDEO_X_SGI_MOVIE = "video/x-sgi-movie";
     public static final String MIME_X_CONFERENCE_X_COOLTALK = "x-conference/x-cooltalk";
 
-    private static HashMap<String, String> mimeTypeMapping;
-    private static HashMap<String, String> extMapping;
+    private static final HashMap<String, String> mimeTypeMapping;
+    private static final HashMap<String, String> extMapping;
 
     static {
         mimeTypeMapping = new HashMap<String, String>(200) {
@@ -235,6 +236,7 @@ public class MimeTypes {
                 put1("rm", MIME_APPLICATION_VND_RNREALMEDIA);
                 put1("ppt", MIME_APPLICATION_VND_MSPOWERPOINT);
                 put1("mif", MIME_APPLICATION_VND_MIF);
+                put1("apk", MIME_APPLICATION_VND_APK);
                 put1("grxml", MIME_APPLICATION_SRGS_XML);
                 put1("gram", MIME_APPLICATION_SRGS);
                 put1("smil", MIME_APPLICATION_RDF_SMIL);
@@ -393,6 +395,7 @@ public class MimeTypes {
                 put1(MIME_APPLICATION_VND_RNREALMEDIA, "rm");
                 put1(MIME_APPLICATION_VND_MSPOWERPOINT, "ppt");
                 put1(MIME_APPLICATION_VND_MIF, "mif");
+                put1(MIME_APPLICATION_VND_APK, "apk");
                 put1(MIME_APPLICATION_SRGS_XML, "grxml");
                 put1(MIME_APPLICATION_SRGS, "gram");
                 put1(MIME_APPLICATION_RDF_SMIL, "smil");

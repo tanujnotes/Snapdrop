@@ -27,7 +27,7 @@ public class JavaScriptInterface {
 
     @JavascriptInterface
     public void getBase64FromBlobData(String base64Data, String mimeType, String extension) throws IOException {
-        convertBase64StringToPdfAndStoreIt(base64Data, mimeType, extension);
+        convertBase64StringToFileAndSaveIt(base64Data, mimeType, extension);
     }
 
     public static String getBase64StringFromBlobUrl(String blobUrl, String mimeType, String extension) {
@@ -54,9 +54,10 @@ public class JavaScriptInterface {
         return "javascript: console.log('It is not a Blob URL');";
     }
 
-    private void convertBase64StringToPdfAndStoreIt(String base64Data, String mimeType, String extension) throws IOException {
+    private void convertBase64StringToFileAndSaveIt(String base64Data, String mimeType, String extension) throws IOException {
         String currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
-        String fileName = "Snapdrop_" + currentDateTime + "_." + extension;
+        String fileName = "Snapdrop_" + currentDateTime;
+        if (!extension.isEmpty()) fileName = fileName + "_." + extension;
         byte[] fileAsBytes = Base64.decode(base64Data.replaceFirst("^data:" + mimeType + ";base64,", ""), 0);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -79,6 +80,6 @@ public class JavaScriptInterface {
             fileOutputStream.write(fileAsBytes);
             fileOutputStream.flush();
         }
-        Toast.makeText(context, "FILE DOWNLOADED!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Download complete!\nCheck downloads folder.", Toast.LENGTH_SHORT).show();
     }
 }

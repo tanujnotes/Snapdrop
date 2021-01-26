@@ -177,6 +177,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             return;
         }
         String fileExtension = MimeTypes.getDefaultExt(mimeType);
+        if (fileExtension.equals("unknown")) fileExtension = "";
         browser.loadUrl(JavaScriptInterface.getBase64StringFromBlobUrl(url, mimeType, fileExtension));
         downloadUrl = null;
         downloadMimeType = null;
