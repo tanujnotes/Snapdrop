@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -22,12 +23,14 @@ import android.widget.Toast;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
 
     private final int FILE_CHOOSER_RESULT_CODE = 10;
     private final int PERMISSION_REQUEST_CODE = 11;
+    private final String SNAPDROP_URL = "https://snapdrop.net/";
 
     private WebView browser;
+    private View aboutLayout;
     private ValueCallback<Uri[]> filePath;
     private Uri[] results = null;
     private String downloadUrl = null;
@@ -43,13 +46,50 @@ public class MainActivity extends Activity {
         browserSettings();
         handleIntent(getIntent());
 
-        browser.loadUrl("https://snapdrop.net/");
+        browser.loadUrl(SNAPDROP_URL);
+
+        aboutLayout = findViewById(R.id.about_layout);
+        findViewById(R.id.about).setOnClickListener(this);
+        findViewById(R.id.close).setOnClickListener(this);
+        findViewById(R.id.robin_github).setOnClickListener(this);
+        findViewById(R.id.robin_twitter).setOnClickListener(this);
+        findViewById(R.id.tanuj_github).setOnClickListener(this);
+        findViewById(R.id.tanuj_twitter).setOnClickListener(this);
+        findViewById(R.id.snapdrop_web).setOnClickListener(this);
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         handleIntent(intent);
         super.onNewIntent(intent);
+    }
+
+    @Override
+    @SuppressLint("NonConstantResourceId")
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.about:
+                aboutLayout.setVisibility(View.VISIBLE);
+                break;
+            case R.id.close:
+                aboutLayout.setVisibility(View.GONE);
+                break;
+            case R.id.robin_github:
+                openWebUrl("https://github.com/RobinLinus/snapdrop");
+                break;
+            case R.id.robin_twitter:
+                openWebUrl("https://twitter.com/robin_linus/");
+                break;
+            case R.id.tanuj_github:
+                openWebUrl("https://github.com/tanujnotes/");
+                break;
+            case R.id.tanuj_twitter:
+                openWebUrl("https://twitter.com/tanujnotes/");
+                break;
+            case R.id.snapdrop_web:
+                openWebUrl(SNAPDROP_URL);
+                break;
+        }
     }
 
     private void handleIntent(Intent intent) {
@@ -62,9 +102,8 @@ public class MainActivity extends Activity {
             if ("text/plain".equals(type)) {
                 copyToClipboard(intent.getStringExtra(Intent.EXTRA_TEXT));
                 Toast.makeText(this, "Long press and paste the text", Toast.LENGTH_LONG).show();
-            } else {
+            } else
                 getUriFromIntent(intent);
-            }
         }
     }
 
@@ -92,6 +131,7 @@ public class MainActivity extends Activity {
     private void openWebUrl(String url) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(browserIntent);
+        aboutLayout.setVisibility(View.GONE);
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -159,7 +199,6 @@ public class MainActivity extends Activity {
                 try {
                     URL host = new URL(url);
                     if (!host.getHost().contains("snapdrop.net")) {
-                        webView1.goBack();
                         openWebUrl(url);
                     }
                 } catch (MalformedURLException e) {
