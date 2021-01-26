@@ -54,9 +54,10 @@ public class JavaScriptInterface {
         return "javascript: console.log('It is not a Blob URL');";
     }
 
-    private void convertBase64StringToPdfAndStoreIt(String base64PDf, String mimeType, String extension) throws IOException {
+    private void convertBase64StringToPdfAndStoreIt(String base64Data, String mimeType, String extension) throws IOException {
         String currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
         String fileName = "Snapdrop_" + currentDateTime + "_." + extension;
+        byte[] fileAsBytes = Base64.decode(base64Data.replaceFirst("^data:" + mimeType + ";base64,", ""), 0);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             ContentResolver resolver = context.getContentResolver();
@@ -67,16 +68,13 @@ public class JavaScriptInterface {
             contentValues.put(MediaStore.Downloads.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS + "/Snapdrop");
 
             Uri uri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues);
-            byte[] fileAsBytes = Base64.decode(base64PDf.replaceFirst("^data:" + mimeType + ";base64,", ""), 0);
             OutputStream outputStream = resolver.openOutputStream(uri);
             outputStream.write(fileAsBytes);
             outputStream.close();
 
         } else {
             final File file = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_DOWNLOADS) + "/Snapdrop/" + fileName);
-
-            byte[] fileAsBytes = Base64.decode(base64PDf.replaceFirst("^data:" + mimeType + ";base64,", ""), 0);
+                    Environment.DIRECTORY_DOWNLOADS) + "/" + fileName);
             FileOutputStream fileOutputStream = new FileOutputStream(file, false);
             fileOutputStream.write(fileAsBytes);
             fileOutputStream.flush();

@@ -1,11 +1,14 @@
 package net.snapdrop;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.webkit.ValueCallback;
@@ -21,11 +24,14 @@ import java.net.URL;
 
 public class MainActivity extends Activity {
 
-    private final int FILE_CHOOSER_RESULT_CODE = 12;
+    private final int FILE_CHOOSER_RESULT_CODE = 10;
+    private final int PERMISSION_REQUEST_CODE = 11;
 
     private WebView browser;
     private ValueCallback<Uri[]> filePath;
-    Uri[] results = null;
+    private Uri[] results = null;
+    private String downloadUrl = null;
+    private String downloadMimeType = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,8 +98,15 @@ public class MainActivity extends Activity {
     private void browserSettings() {
         browser.getSettings().setJavaScriptEnabled(true);
         browser.setDownloadListener((url, userAgent, contentDisposition, mimeType, contentLength) -> {
-            String fileExtension = MimeTypes.getDefaultExt(mimeType);
-            browser.loadUrl(JavaScriptInterface.getBase64StringFromBlobUrl(url, mimeType, fileExtension));
+            if (hasStoragePermission()
+//                    || Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+                    || Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                saveFile(url, mimeType);
+            } else {
+                downloadUrl = url;
+                downloadMimeType = mimeType;
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+            }
         });
         browser.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         browser.getSettings().setDatabaseEnabled(true);
@@ -101,6 +114,23 @@ public class MainActivity extends Activity {
         browser.getSettings().setUseWideViewPort(true);
         browser.getSettings().setLoadWithOverviewMode(true);
         browser.addJavascriptInterface(new JavaScriptInterface(this), "Android");
+    }
+
+    private boolean hasStoragePermission() {
+        String permission = android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+        int res = checkCallingOrSelfPermission(permission);
+        return (res == PackageManager.PERMISSION_GRANTED);
+    }
+
+    private void saveFile(String url, String mimeType) {
+        if (url == null || url.isEmpty()) {
+            Toast.makeText(this, "Please try again", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String fileExtension = MimeTypes.getDefaultExt(mimeType);
+        browser.loadUrl(JavaScriptInterface.getBase64StringFromBlobUrl(url, mimeType, fileExtension));
+        downloadUrl = null;
+        downloadMimeType = null;
     }
 
     private void openFileChooserActivity() {
@@ -150,6 +180,17 @@ public class MainActivity extends Activity {
                 return true;
             }
         };
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                saveFile(downloadUrl, downloadMimeType);
+            else
+                Toast.makeText(this, "Need storage permission to download files", Toast.LENGTH_LONG).show();
+        } else
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
