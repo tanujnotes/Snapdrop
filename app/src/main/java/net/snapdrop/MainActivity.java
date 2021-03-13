@@ -59,8 +59,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.refresh).setOnClickListener(this);
         findViewById(R.id.robin_github).setOnClickListener(this);
         findViewById(R.id.robin_twitter).setOnClickListener(this);
+        findViewById(R.id.robin_more).setOnClickListener(this);
         findViewById(R.id.tanuj_github).setOnClickListener(this);
         findViewById(R.id.tanuj_twitter).setOnClickListener(this);
+        findViewById(R.id.tanuj_more).setOnClickListener(this);
         findViewById(R.id.snapdrop_web).setOnClickListener(this);
     }
 
@@ -94,6 +96,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.tanuj_twitter:
                 openWebUrl("https://twitter.com/tanujnotes/");
+                break;
+            case R.id.robin_more:
+                openWebUrl("https://www.nimiq.com/?utm_source=snapdrop");
+                break;
+            case R.id.tanuj_more:
+                openWebUrl("https://play.google.com/store/apps/dev?id=7198807840081074933&utm_source=snapdrop");
                 break;
             case R.id.snapdrop_web:
                 openWebUrl(SNAPDROP_URL);

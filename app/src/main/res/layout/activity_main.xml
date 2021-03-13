@@ -51,7 +51,6 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="24dp"
             android:src="@drawable/snapdrop" />
 
         <TextView
@@ -80,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Snapdrop project by"
+            android:text="@string/snapdrop_project_by"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -89,9 +88,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:text="Robin"
+            android:text="@string/robin"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="28sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -117,6 +116,16 @@
                 android:src="@drawable/ic_twitter" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/robin_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:text="@string/more_by_robin"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
         <Space
             android:layout_width="wrap_content"
             android:layout_height="0dp"
@@ -127,7 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:text="App developed by"
+            android:text="@string/app_developed_by"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -136,9 +145,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:text="Tanuj"
+            android:text="@string/tanuj"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="28sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -164,6 +173,16 @@
                 android:src="@drawable/ic_twitter" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tanuj_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:text="@string/more_by_tanuj"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
         <Space
             android:layout_width="wrap_content"
             android:layout_height="0dp"
@@ -174,8 +193,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:letterSpacing="0.2"
-            android:text="www.snapdrop.net"
+            android:letterSpacing="0.25"
+            android:text="@string/www_snapdrop_net"
             android:textAllCaps="true"
             android:textColor="@color/white" />
 
