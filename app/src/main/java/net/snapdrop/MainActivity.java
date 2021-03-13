@@ -3,6 +3,7 @@ package net.snapdrop;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
@@ -57,6 +58,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.about).setOnClickListener(this);
         findViewById(R.id.close).setOnClickListener(this);
         findViewById(R.id.refresh).setOnClickListener(this);
+        findViewById(R.id.downloads).setOnClickListener(this);
         findViewById(R.id.robin_github).setOnClickListener(this);
         findViewById(R.id.robin_twitter).setOnClickListener(this);
         findViewById(R.id.robin_more).setOnClickListener(this);
@@ -78,6 +80,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.refresh:
                 browser.loadUrl(SNAPDROP_URL);
+                break;
+            case R.id.downloads:
+                startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
                 break;
             case R.id.about:
                 aboutLayout.setVisibility(View.VISIBLE);

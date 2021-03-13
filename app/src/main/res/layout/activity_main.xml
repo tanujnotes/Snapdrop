@@ -15,9 +15,17 @@
         android:id="@+id/refresh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:padding="16dp"
         android:src="@drawable/ic_refresh"
+        android:tint="@color/gray" />
+
+    <ImageView
+        android:id="@+id/downloads"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:padding="16dp"
+        android:src="@drawable/ic_download"
         android:tint="@color/gray" />
 
     <View
@@ -51,7 +59,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/snapdrop" />
+            android:src="@drawable/ic_snapdrop" />
 
         <TextView
             android:layout_width="wrap_content"
