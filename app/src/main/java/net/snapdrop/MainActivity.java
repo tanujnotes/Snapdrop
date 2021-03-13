@@ -69,6 +69,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        browser.loadUrl("about:blank");
+    }
+
+    @Override
     protected void onNewIntent(Intent intent) {
         handleIntent(intent);
         super.onNewIntent(intent);
