@@ -39,12 +39,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().setStatusBarColor(getColor(android.R.color.black));
             getWindow().setNavigationBarColor(getColor(android.R.color.black));
         }
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         browser = findViewById(R.id.webView);
         browser.setWebChromeClient(getMyWebChromeClient());
@@ -59,6 +59,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.close).setOnClickListener(this);
         findViewById(R.id.refresh).setOnClickListener(this);
         findViewById(R.id.downloads).setOnClickListener(this);
+        findViewById(R.id.wormhole).setOnClickListener(this);
         findViewById(R.id.robin_github).setOnClickListener(this);
         findViewById(R.id.robin_twitter).setOnClickListener(this);
         findViewById(R.id.robin_more).setOnClickListener(this);
@@ -89,6 +90,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.downloads:
                 startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
+                break;
+            case R.id.wormhole:
+                startActivity(new Intent(this, WormholeActivity.class));
                 break;
             case R.id.about:
                 aboutLayout.setVisibility(View.VISIBLE);

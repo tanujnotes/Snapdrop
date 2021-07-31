@@ -28,6 +28,15 @@
         android:src="@drawable/ic_download"
         android:tint="@color/gray" />
 
+    <ImageView
+        android:id="@+id/wormhole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:padding="16dp"
+        android:src="@drawable/ic_upload"
+        android:tint="@color/gray" />
+
     <View
         android:id="@+id/about"
         android:layout_width="64dp"
@@ -74,6 +83,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="12dp"
+            android:gravity="center_horizontal"
             android:text="@string/the_easiest_way_to_transfer_files_across_devices"
             android:textColor="@color/white"
             android:textSize="16sp" />
@@ -90,15 +101,6 @@
             android:text="@string/snapdrop_project_by"
             android:textColor="@color/white"
             android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:text="@string/robin"
-            android:textColor="@color/white"
-            android:textSize="28sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -147,15 +149,6 @@
             android:text="@string/app_developed_by"
             android:textColor="@color/white"
             android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:text="@string/tanuj"
-            android:textColor="@color/white"
-            android:textSize="28sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"

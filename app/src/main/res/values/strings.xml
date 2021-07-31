@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Snapdrop</string>
+    <string name="wormhole">Wormhole</string>
+    <string name="loading">Loading…</string>
     <string name="the_easiest_way_to_transfer_files_across_devices">The easiest way to transfer files across devices</string>
-    <string name="more_by_robin"><u>More projects by Robin</u></string>
-    <string name="more_by_tanuj"><u>More apps by Tanuj</u></string>
+    <string name="more_by_robin"><u>See more by Robin</u></string>
+    <string name="more_by_tanuj"><u>See more by Tanuj</u></string>
     <string name="www_snapdrop_net">www.snapdrop.net</string>
-    <string name="tanuj">Tanuj</string>
-    <string name="app_developed_by">App developed by</string>
-    <string name="robin">Robin</string>
-    <string name="snapdrop_project_by">Snapdrop project by</string>
+    <string name="app_developed_by">App developed by - <b>Tanuj</b></string>
+    <string name="snapdrop_project_by">Snapdrop project by - <b>Robin</b></string>
 </resources>
