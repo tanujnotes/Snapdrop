@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -92,7 +93,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
                 break;
             case R.id.wormhole:
-                startActivity(new Intent(this, WormholeActivity.class));
+                openWebUrl("https://wormhole.app");
                 break;
             case R.id.about:
                 aboutLayout.setVisibility(View.VISIBLE);
@@ -143,6 +144,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText(getString(R.string.app_name), sharedText);
         clipboard.setPrimaryClip(clip);
+    }
+
+    private void showIcons() {
+        findViewById(R.id.refresh).setVisibility(View.VISIBLE);
+        findViewById(R.id.downloads).setVisibility(View.VISIBLE);
+        findViewById(R.id.wormhole).setVisibility(View.VISIBLE);
     }
 
     private void getUriFromIntent(Intent intent) {
@@ -220,6 +227,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 return super.shouldOverrideUrlLoading(view, request);
             }
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                String summary = "<html><body><br/><br/><br/><br/><br/><br/><br/><br/><h1> Please check your Internet and refresh.</h1></body></html>";
+                browser.loadData(summary, "text/html", null);
+            }
         };
     }
 
@@ -250,6 +263,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     openFileChooserActivity();
 
                 return true;
+            }
+
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                if (newProgress >= 80)
+                    showIcons();
+                super.onProgressChanged(view, newProgress);
             }
         };
     }

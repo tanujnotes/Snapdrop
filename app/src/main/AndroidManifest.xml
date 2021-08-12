@@ -14,11 +14,6 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
         <activity
-            android:name=".WormholeActivity"
-            android:configChanges="orientation|screenSize"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
             android:launchMode="singleTask"
