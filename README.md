@@ -1,5 +1,7 @@
 # Snapdrop
-Android app for www.snapdrop.net. This app is a wrapper around [snapdrop project](https://github.com/RobinLinus/snapdrop) using webview and some javascript interface for downloads.
+Android app for [Snapdrop.net](https://snapdrop.net)
+
+This app is a wrapper around [snapdrop project](https://github.com/RobinLinus/snapdrop) using webview and some javascript interface for downloads.
 
 Install from **[Play Store](https://play.google.com/store/apps/details?id=net.snapdrop)** or **[APK release](https://github.com/tanujnotes/Snapdrop/releases)**.
 
