@@ -1,5 +1,5 @@
 # Snapdrop
-Android app for [Snapdrop.net](https://snapdrop.net)
+Android app for [Snapdrop.net](https://snapdrop.net) - The easiest way to transfer files across devices on same wifi or hotspot.
 
 This app is a wrapper around [snapdrop project](https://github.com/RobinLinus/snapdrop) using webview and some javascript interface for downloads.
 
