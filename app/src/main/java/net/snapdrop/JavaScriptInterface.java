@@ -80,6 +80,6 @@ public class JavaScriptInterface {
             fileOutputStream.write(fileAsBytes);
             fileOutputStream.flush();
         }
-        Toast.makeText(context, "Download complete!\nCheck downloads folder.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Done! Check downloads folder.", Toast.LENGTH_SHORT).show();
     }
 }
