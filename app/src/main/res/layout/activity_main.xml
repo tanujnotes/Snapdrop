@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:src="@drawable/ic_refresh"
-        android:tint="@color/colorPrimary"
+        android:tint="#4285f4"
         android:visibility="gone"
         tools:visibility="visible" />
 
@@ -28,7 +28,7 @@
         android:layout_marginStart="56dp"
         android:padding="16dp"
         android:src="@drawable/ic_folder"
-        android:tint="@color/colorPrimary"
+        android:tint="#4285f4"
         android:visibility="gone"
         tools:visibility="visible" />
 
@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        android:background="@color/colorPrimary"
+        android:background="#4285f4"
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/app_name"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textSize="32sp" />
 
         <TextView
@@ -82,7 +82,7 @@
             android:layout_marginTop="8dp"
             android:gravity="center_horizontal"
             android:text="@string/the_easiest_way_to_transfer_files_across_devices"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textSize="16sp" />
 
         <Space
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/snapdrop_project_by"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -133,7 +133,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:text="@string/app_developed_by"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -173,7 +173,7 @@
             android:letterSpacing="0.02"
             android:paddingVertical="8dp"
             android:text="@string/digital_minimalism"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textSize="18sp" />
 
         <Space
