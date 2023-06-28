@@ -40,6 +40,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private String downloadMimeType = null;
 
     @Override
+    public void onBackPressed() {
+        if (aboutLayout.getVisibility() == View.VISIBLE)
+            aboutLayout.setVisibility(View.GONE);
+        else
+            super.onBackPressed();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().setStatusBarColor(Color.parseColor("#121212"));
