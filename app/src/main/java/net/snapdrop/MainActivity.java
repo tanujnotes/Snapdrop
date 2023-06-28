@@ -27,9 +27,9 @@ import java.net.URL;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    private final int FILE_CHOOSER_RESULT_CODE = 10;
-    private final int PERMISSION_REQUEST_CODE = 11;
-    private final String SNAPDROP_URL = "https://snapdrop.net/";
+    private int FILE_CHOOSER_RESULT_CODE = 10;
+    private int PERMISSION_REQUEST_CODE = 11;
+    private String SNAPDROP_URL = "https://snapdrop.net/";
 
     private WebView browser;
     private View aboutLayout;
