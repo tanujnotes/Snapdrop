@@ -8,6 +8,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,9 +28,9 @@ import java.net.URL;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    private int FILE_CHOOSER_RESULT_CODE = 10;
-    private int PERMISSION_REQUEST_CODE = 11;
-    private String SNAPDROP_URL = "https://snapdrop.net/";
+    private final int FILE_CHOOSER_RESULT_CODE = 10;
+    private final int PERMISSION_REQUEST_CODE = 11;
+    private final String SNAPDROP_URL = "https://snapdrop.net/";
 
     private WebView browser;
     private View aboutLayout;
@@ -41,8 +42,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().setStatusBarColor(getColor(android.R.color.black));
-            getWindow().setNavigationBarColor(getColor(android.R.color.black));
+            getWindow().setStatusBarColor(Color.parseColor("#121212"));
+            getWindow().setNavigationBarColor(Color.parseColor("#121212"));
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
