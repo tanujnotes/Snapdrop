@@ -61,14 +61,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.close).setOnClickListener(this);
         findViewById(R.id.refresh).setOnClickListener(this);
         findViewById(R.id.downloads).setOnClickListener(this);
-        findViewById(R.id.wormhole).setOnClickListener(this);
         findViewById(R.id.robin_github).setOnClickListener(this);
         findViewById(R.id.robin_twitter).setOnClickListener(this);
-        findViewById(R.id.robin_more).setOnClickListener(this);
         findViewById(R.id.tanuj_github).setOnClickListener(this);
         findViewById(R.id.tanuj_twitter).setOnClickListener(this);
         findViewById(R.id.tanuj_more).setOnClickListener(this);
-        findViewById(R.id.snapdrop_web).setOnClickListener(this);
     }
 
     @Override
@@ -87,42 +84,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @SuppressLint("NonConstantResourceId")
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.refresh:
-                browser.loadUrl(SNAPDROP_URL);
-                break;
-            case R.id.downloads:
-                startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
-                break;
-            case R.id.wormhole:
-                openWebUrl("https://wormhole.app");
-                break;
-            case R.id.about:
-                aboutLayout.setVisibility(View.VISIBLE);
-                break;
-            case R.id.close:
-                aboutLayout.setVisibility(View.GONE);
-                break;
-            case R.id.robin_github:
-                openWebUrl("https://github.com/RobinLinus/snapdrop");
-                break;
-            case R.id.robin_twitter:
-                openWebUrl("https://twitter.com/robin_linus/");
-                break;
-            case R.id.tanuj_github:
-                openWebUrl("https://github.com/tanujnotes/");
-                break;
-            case R.id.tanuj_twitter:
-                openWebUrl("https://twitter.com/tanujnotes/");
-                break;
-            case R.id.robin_more:
-                openWebUrl("https://www.nimiq.com/?utm_source=snapdrop");
-                break;
-            case R.id.tanuj_more:
-                openWebUrl("https://play.google.com/store/apps/dev?id=7198807840081074933&utm_source=snapdrop");
-                break;
-            case R.id.snapdrop_web:
-                openWebUrl(SNAPDROP_URL);
-                break;
+            case R.id.refresh -> browser.loadUrl(SNAPDROP_URL);
+            case R.id.downloads -> startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
+            case R.id.about -> aboutLayout.setVisibility(View.VISIBLE);
+            case R.id.close -> aboutLayout.setVisibility(View.GONE);
+            case R.id.robin_github -> openWebUrl("https://github.com/RobinLinus/snapdrop");
+            case R.id.robin_twitter -> openWebUrl("https://twitter.com/robin_linus/");
+            case R.id.tanuj_github -> openWebUrl("https://github.com/tanujnotes/");
+            case R.id.tanuj_twitter -> openWebUrl("https://twitter.com/tanujnotes/");
+            case R.id.tanuj_more ->
+                    openWebUrl("https://play.google.com/store/apps/dev?id=7198807840081074933&utm_source=snapdrop");
         }
     }
 
@@ -150,7 +121,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private void showIcons() {
         findViewById(R.id.refresh).setVisibility(View.VISIBLE);
         findViewById(R.id.downloads).setVisibility(View.VISIBLE);
-        findViewById(R.id.wormhole).setVisibility(View.VISIBLE);
     }
 
     private void getUriFromIntent(Intent intent) {

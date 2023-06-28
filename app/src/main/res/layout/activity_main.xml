@@ -18,7 +18,8 @@
         android:padding="16dp"
         android:src="@drawable/ic_refresh"
         android:tint="@color/colorPrimary"
-        android:visibility="gone" />
+        android:visibility="gone"
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/downloads"
@@ -28,17 +29,8 @@
         android:padding="16dp"
         android:src="@drawable/ic_download"
         android:tint="@color/colorPrimary"
-        android:visibility="gone" />
-
-    <ImageView
-        android:id="@+id/wormhole"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:padding="16dp"
-        android:src="@drawable/ic_upload"
-        android:tint="@color/colorPrimary"
-        android:visibility="gone" />
+        android:visibility="gone"
+        tools:visibility="visible" />
 
     <View
         android:id="@+id/about"
@@ -56,7 +48,8 @@
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <ImageView
             android:id="@+id/close"
@@ -109,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -129,16 +122,6 @@
                 android:src="@drawable/ic_twitter" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/robin_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:text="@string/more_by_robin"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-
         <Space
             android:layout_width="wrap_content"
             android:layout_height="0dp"
@@ -157,7 +140,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -177,35 +160,26 @@
                 android:src="@drawable/ic_twitter" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tanuj_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:text="@string/more_by_tanuj"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-
         <Space
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/snapdrop_web"
+            android:id="@+id/tanuj_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:letterSpacing="0.25"
-            android:text="@string/www_snapdrop_net"
-            android:textAllCaps="true"
-            android:textColor="@color/white" />
+            android:letterSpacing="0.02"
+            android:paddingVertical="8dp"
+            android:text="@string/digital_minimalism"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <Space
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="0.5" />
+            android:layout_weight="1" />
 
     </LinearLayout>
 
