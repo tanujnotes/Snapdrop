@@ -66,7 +66,7 @@ public class JavaScriptInterface {
             contentValues.put(MediaStore.Downloads.DISPLAY_NAME, fileName);
             contentValues.put(MediaStore.Downloads.MIME_TYPE, mimeType);
             contentValues.put(MediaStore.Downloads.DATE_ADDED, System.currentTimeMillis());
-            contentValues.put(MediaStore.Downloads.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS + "/Snapdrop");
+            contentValues.put(MediaStore.Downloads.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
 
             Uri uri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues);
             OutputStream outputStream = resolver.openOutputStream(uri);
