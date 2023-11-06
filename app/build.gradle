@@ -3,12 +3,10 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion "30.0.3"
-
     defaultConfig {
         applicationId "net.snapdrop"
         minSdkVersion 21
+        compileSdk 33
         targetSdkVersion 33
         versionCode 5
         versionName "v0.5"
