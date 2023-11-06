@@ -56,7 +56,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().setStatusBarColor(Color.parseColor("#121212"));
-            getWindow().setNavigationBarColor(Color.parseColor("#121212"));
+            getWindow().setNavigationBarColor(Color.parseColor("#222222"));
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -125,10 +125,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (isPairdrop) {
             browser.loadUrl(PAIRDROP_URL);
             tvPairdrop.setAlpha(1f);
-            tvSnapdrop.setAlpha(0.7f);
+            tvSnapdrop.setAlpha(0.6f);
         } else {
             browser.loadUrl(SNAPDROP_URL);
-            tvPairdrop.setAlpha(0.7f);
+            tvPairdrop.setAlpha(0.6f);
             tvSnapdrop.setAlpha(1f);
         }
     }
