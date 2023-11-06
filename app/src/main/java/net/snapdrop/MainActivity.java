@@ -21,6 +21,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.MalformedURLException;
@@ -30,10 +31,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private final int FILE_CHOOSER_RESULT_CODE = 10;
     private final int PERMISSION_REQUEST_CODE = 11;
+    private final String PAIRDROP_URL = "https://pairdrop.net/";
     private final String SNAPDROP_URL = "https://snapdrop.net/";
 
     private WebView browser;
     private View aboutLayout;
+    private TextView tvPairdrop, tvSnapdrop;
     private ValueCallback<Uri[]> filePath;
     private Uri[] results = null;
     private String downloadUrl = null;
@@ -62,9 +65,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         browserSettings();
         handleIntent(getIntent());
 
-        browser.loadUrl(SNAPDROP_URL);
+        browser.loadUrl(PAIRDROP_URL);
 
         aboutLayout = findViewById(R.id.about_layout);
+        tvPairdrop = findViewById(R.id.tvPairdrop);
+        tvSnapdrop = findViewById(R.id.tvSnapdrop);
+
+        findViewById(R.id.tvPairdrop).setOnClickListener(this);
+        findViewById(R.id.tvSnapdrop).setOnClickListener(this);
         findViewById(R.id.about).setOnClickListener(this);
         findViewById(R.id.close).setOnClickListener(this);
         findViewById(R.id.refresh).setOnClickListener(this);
@@ -92,7 +100,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @SuppressLint("NonConstantResourceId")
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.refresh -> browser.loadUrl(SNAPDROP_URL);
+            case R.id.refresh -> refreshWebview();
+            case R.id.tvPairdrop -> loadWebviewUrl(true);
+            case R.id.tvSnapdrop -> loadWebviewUrl(false);
             case R.id.downloads -> startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
             case R.id.about -> aboutLayout.setVisibility(View.VISIBLE);
             case R.id.close -> aboutLayout.setVisibility(View.GONE);
@@ -103,6 +113,28 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.tanuj_more ->
                     openWebUrl("https://play.google.com/store/apps/dev?id=7198807840081074933&utm_source=snapdrop");
         }
+    }
+
+    private void loadWebviewUrl(boolean isPairdrop) {
+        browser.loadUrl("about:blank");
+        if (isPairdrop) {
+            browser.loadUrl(PAIRDROP_URL);
+            tvPairdrop.setAlpha(1f);
+            tvSnapdrop.setAlpha(0.7f);
+        } else {
+            browser.loadUrl(SNAPDROP_URL);
+            tvPairdrop.setAlpha(0.7f);
+            tvSnapdrop.setAlpha(1f);
+        }
+    }
+
+    private void refreshWebview() {
+        browser.loadUrl("about:blank");
+        if (tvPairdrop.getAlpha() == 1f)
+            browser.loadUrl(PAIRDROP_URL);
+        else
+            browser.loadUrl(SNAPDROP_URL);
+
     }
 
     private void handleIntent(Intent intent) {
@@ -223,7 +255,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 if (url == null || url.isEmpty()) return;
                 try {
                     URL host = new URL(url);
-                    if (!host.getHost().contains("snapdrop.net")) {
+                    if (!host.getHost().contains("snapdrop.net") && !host.getHost().contains("pairdrop.net")) {
                         openWebUrl(url);
                     }
                 } catch (MalformedURLException e) {

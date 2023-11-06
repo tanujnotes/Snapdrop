@@ -9,7 +9,8 @@
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="56dp" />
 
     <ImageView
         android:id="@+id/refresh"
@@ -38,6 +39,53 @@
         android:layout_height="56dp"
         android:layout_gravity="end"
         android:background="@android:color/transparent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="56dp"
+        android:alpha="0.3"
+        android:background="@android:color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        android:background="#121212"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvPairdrop"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/pairdrop"
+            android:textColor="#4285f4"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:alpha="0.3"
+            android:layout_marginVertical="12dp"
+            android:background="@android:color/white" />
+
+        <TextView
+            android:id="@+id/tvSnapdrop"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:alpha="0.7"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="#4285f4"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/about_layout"
