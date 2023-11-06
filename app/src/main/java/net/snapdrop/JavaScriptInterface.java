@@ -43,9 +43,7 @@ public class JavaScriptInterface {
                     "        reader.readAsDataURL(blobPdf);" +
                     "        reader.onloadend = function() {" +
                     "            base64data = reader.result;" +
-                    "            mime = '" + mimeType + "';" +
-                    "            ext = '" + extension + "';" +
-                    "            Android.getBase64FromBlobData(base64data,mime,ext);" +
+                    "            Android.getBase64FromBlobData(base64data,'" + mimeType + "','" + extension + "');" +
                     "        }" +
                     "    }" +
                     "};" +
