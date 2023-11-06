@@ -21,6 +21,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private WebView browser;
     private View aboutLayout;
     private TextView tvPairdrop, tvSnapdrop;
+    private ProgressBar progressBar;
     private ValueCallback<Uri[]> filePath;
     private Uri[] results = null;
     private String downloadUrl = null;
@@ -70,7 +72,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         aboutLayout = findViewById(R.id.about_layout);
         tvPairdrop = findViewById(R.id.tvPairdrop);
         tvSnapdrop = findViewById(R.id.tvSnapdrop);
+        progressBar = findViewById(R.id.progressBar);
 
+        findViewById(R.id.progressBar).setOnClickListener(this);
         findViewById(R.id.tvPairdrop).setOnClickListener(this);
         findViewById(R.id.tvSnapdrop).setOnClickListener(this);
         findViewById(R.id.about).setOnClickListener(this);
@@ -117,6 +121,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void loadWebviewUrl(boolean isPairdrop) {
         browser.loadUrl("about:blank");
+        progressBar.setVisibility(View.VISIBLE);
         if (isPairdrop) {
             browser.loadUrl(PAIRDROP_URL);
             tvPairdrop.setAlpha(1f);
@@ -130,6 +135,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void refreshWebview() {
         browser.loadUrl("about:blank");
+        progressBar.setVisibility(View.VISIBLE);
         if (tvPairdrop.getAlpha() == 1f)
             browser.loadUrl(PAIRDROP_URL);
         else
@@ -278,8 +284,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                if (newProgress >= 80)
+                Log.d("newProgress", newProgress + "");
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                    progressBar.setProgress(newProgress, true);
+                else progressBar.setProgress(newProgress);
+
+                if (newProgress >= 80) {
                     showIcons();
+                    progressBar.setVisibility(View.GONE);
+                }
                 super.onProgressChanged(view, newProgress);
             }
         };

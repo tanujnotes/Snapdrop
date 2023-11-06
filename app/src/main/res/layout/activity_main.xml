@@ -48,6 +48,14 @@
         android:alpha="0.3"
         android:background="@android:color/white" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:progressTint="#4285f4"
+        tools:progress="33" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -69,8 +77,8 @@
         <View
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
-            android:alpha="0.3"
             android:layout_marginVertical="12dp"
+            android:alpha="0.3"
             android:background="@android:color/white" />
 
         <TextView
