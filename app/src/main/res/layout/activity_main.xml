@@ -55,7 +55,7 @@
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="4dp"
+        android:layout_height="3dp"
         android:progressTint="#4285f4"
         tools:progress="33" />
 
@@ -91,7 +91,7 @@
             android:layout_weight="1"
             android:alpha="0.6"
             android:gravity="center"
-            android:text="@string/app_name"
+            android:text="@string/snapdrop"
             android:textColor="#4285f4"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -108,7 +108,7 @@
         android:focusable="true"
         android:orientation="vertical"
         android:visibility="gone"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <ImageView
             android:id="@+id/close"

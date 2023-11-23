@@ -6,4 +6,5 @@
     <string name="snapdrop_project_by">Snapdrop project by - <b>Robin</b></string>
     <string name="pairdrop_project_by">Pairdrop project by - <b>schlagmichdoch</b></string>
     <string name="pairdrop">Pairdrop</string>
+    <string name="snapdrop">Snapdrop</string>
 </resources>
