@@ -54,7 +54,7 @@ public class JavaScriptInterface {
 
     private void convertBase64StringToFileAndSaveIt(String base64Data, String mimeType, String extension) throws IOException {
         String currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
-        String fileName = "Snapdrop_" + currentDateTime;
+        String fileName = "File_" + currentDateTime;
         if (!extension.isEmpty()) fileName = fileName + "_." + extension;
         byte[] fileAsBytes = Base64.decode(base64Data.replaceFirst("^data:" + mimeType + ";base64,", ""), 0);
 

@@ -83,6 +83,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.downloads).setOnClickListener(this);
         findViewById(R.id.robin_github).setOnClickListener(this);
         findViewById(R.id.robin_twitter).setOnClickListener(this);
+        findViewById(R.id.schlagmichdoch_github).setOnClickListener(this);
         findViewById(R.id.tanuj_github).setOnClickListener(this);
         findViewById(R.id.tanuj_twitter).setOnClickListener(this);
         findViewById(R.id.tanuj_more).setOnClickListener(this);
@@ -112,6 +113,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.close -> aboutLayout.setVisibility(View.GONE);
             case R.id.robin_github -> openWebUrl("https://github.com/RobinLinus/snapdrop");
             case R.id.robin_twitter -> openWebUrl("https://twitter.com/robin_linus/");
+            case R.id.schlagmichdoch_github -> openWebUrl("https://github.com/schlagmichdoch/PairDrop");
             case R.id.tanuj_github -> openWebUrl("https://github.com/tanujnotes/");
             case R.id.tanuj_twitter -> openWebUrl("https://twitter.com/tanujnotes/");
             case R.id.tanuj_more ->
