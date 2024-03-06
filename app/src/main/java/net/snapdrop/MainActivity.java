@@ -55,7 +55,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().setStatusBarColor(Color.parseColor("#121212"));
+            getWindow().setStatusBarColor(Color.parseColor("#000000"));
             getWindow().setNavigationBarColor(Color.parseColor("#222222"));
         }
         super.onCreate(savedInstanceState);

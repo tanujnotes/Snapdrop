@@ -6,8 +6,8 @@ android {
     defaultConfig {
         applicationId "net.snapdrop"
         minSdkVersion 21
-        compileSdk 33
-        targetSdkVersion 33
+        compileSdk 34
+        targetSdkVersion 34
         versionCode 11
         versionName "v1.1"
 
